@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: Spring Boot Noop Blueprint
+
+server:
+  port: {PORT}
+
