@@ -9,13 +9,14 @@ components:
         - directory: /app
         - copy: [pom.xml mvnw]
           destination: ./
+        - run: chmod u+x /app/mvnw
         - copy: .mvn
           destination: ./.mvn
         - copy: src
           destination: ./src
         - run: ./mvnw dependency:resolve
     runtime:
-      command: ./mvnw spring-boot:run -Dspring.profiles.active=${SPRING_PROFILE}
+      command: /app/mvnw spring-boot:run -Dspring.profiles.active=${SPRING_PROFILE}
       resources:
         - PgDatabase
       variables:
