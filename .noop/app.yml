@@ -2,21 +2,22 @@
 components:
   - name: SpringApp
     type: service
-    image: eclipse-temurin:17-jdk-alpine
+    image:  maven:3-eclipse-temurin-17-alpine
     port: 8080
+    root: app/
     build:
       steps:
         - directory: /app
-        - copy: [pom.xml mvnw]
+        - copy: [pom.xml]
           destination: ./
-        - run: chmod u+x /app/mvnw
-        - copy: .mvn
-          destination: ./.mvn
         - copy: src
           destination: ./src
-        - run: ./mvnw dependency:resolve
+        - run: mvn package -DskipTests
+        - image: eclipse-temurin:17-jdk-alpine
+          stage: spring
+        - copy: /app/target/*-exec.jar /application.jar
     runtime:
-      command: /app/mvnw spring-boot:run -Dspring.profiles.active=${SPRING_PROFILE}
+      command: java -Dspring.profiles.active=${SPRING_PROFILE} -jar /application.jar
       resources:
         - PgDatabase
       variables:
