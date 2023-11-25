@@ -14,7 +14,9 @@ components:
         - run: mvn package -DskipTests
         - image: eclipse-temurin:17-jdk-alpine
           stage: spring
-        - copy: /app/target/*-exec.jar /application.jar
+        - copy: /app/target/*-exec.jar
+          destination: /application.jar
+          from: main
     runtime:
       command: java -Dspring.profiles.active=${SPRING_PROFILE} -jar /application.jar
       resources:
