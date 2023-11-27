@@ -18,7 +18,7 @@ components:
           destination: /application.jar
           from: main
     runtime:
-      command: java -Dspring.profiles.active=${SPRING_PROFILE} -jar /application.jar
+      command: java -jar /application.jar
       resources:
         - PgDatabase
       variables:

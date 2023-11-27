@@ -1,7 +1,10 @@
 spring:
   application:
     name: Spring Boot Noop Blueprint
+  security:
+    user:
+      name:
+      password:
 
 server:
-  port: {PORT}
-
+  port: ${PORT}
