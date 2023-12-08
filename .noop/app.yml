@@ -22,9 +22,16 @@ components:
       resources:
         - PgDatabase
       variables:
-        DATABASE_URL:
-          $resources: PgDatabase.url
-        SPRING_PROFILE: dev
+        POSTGRES_HOST:
+          $resources: PgDatabase.host
+        POSTGRES_USER:
+          $resources: PgDatabase.username
+        POSTGRES_PASSWORD:
+          $resources: PgDatabase.password
+        POSTGRES_PORT:
+          $resources: PgDatabase.port
+        POSTGRES_DATABASE:
+          $resources: PgDatabase.database
         PORT: 8080
 routes:
   - target:

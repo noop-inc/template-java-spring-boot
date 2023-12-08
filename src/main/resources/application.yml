@@ -5,6 +5,13 @@ spring:
     user:
       name: ${SPRING_SECURITY_USERNAME}
       password: ${SPRING_SECURITY_PASSWORD}
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DATABASE}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: create
 
 server:
   port: ${PORT}
