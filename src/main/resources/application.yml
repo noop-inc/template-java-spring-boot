@@ -1,17 +1,21 @@
 spring:
   application:
     name: Spring Boot Noop Blueprint
-  security:
-    user:
-      name: ${SPRING_SECURITY_USERNAME}
-      password: ${SPRING_SECURITY_PASSWORD}
   datasource:
-    url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DATABASE}
-    username: ${POSTGRES_USER}
-    password: ${POSTGRES_PASSWORD}
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DATABASE:}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:example}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      minimum-idle: 0
+      initialization-fail-timeout: -1
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  sql:
+    init:
+      continue-on-error: true
 
 server:
-  port: ${PORT}
+  port: ${PORT:8080}
