@@ -29,26 +29,6 @@ workflow:
         clusterId:
           $inputs: Cluster.id
 
-    - name: EnvironmentVarSpringSecurityPasswordPlaceholder
-      action: VariableCreate
-      params:
-        envId:
-          $steps: Environment.id
-        key: SPRING_SECURITY_PASSWORD
-        value: PLACEHOLDER
-        component: SpringApp # Refers to the component specified in the .noop/app.yml
-        secret: true
-
-    - name: EnvironmentVarSpringSecurityUserPlaceholder
-      action: VariableCreate
-      params:
-        envId:
-          $steps: Environment.id
-        key: SPRING_SECURITY_USERNAME
-        value: user
-        component: SpringApp # Refers to the component specified in the .noop/app.yml
-        secret: true
-
     - name: Build
       action: BuildExecute
       params:
